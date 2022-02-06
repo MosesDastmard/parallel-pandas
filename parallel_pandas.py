@@ -27,9 +27,9 @@ def read_csv_parallel(path, n_jobs=N_JOBS, chunksize=CHUNK_SIZE, parallel_on_fil
             path = get_list_files(path)
             return read_from_list(path_list=path, n_jobs=n_jobs, chunksize=chunksize, *args, **kwargs)
         else:
-            return read_from_file(path=path, n_jobs=n_jobs, chunksize=chunksize, *args, **kwargs)
+            return read_from_file(path=path, n_jobs=n_jobs, chunksize=chunksize, parallel_on_files=parallel_on_files, *args, **kwargs)
     elif type(path) == list:
-        return read_from_list(path_list=path, n_jobs=n_jobs, chunksize=chunksize, *args, **kwargs)
+        return read_from_list(path_list=path, n_jobs=n_jobs, chunksize=chunksize, parallel_on_files=parallel_on_files, *args, **kwargs)
     else:
         raise Exception(f"path type has to be str or list of strings, not {type(path)}")
 
