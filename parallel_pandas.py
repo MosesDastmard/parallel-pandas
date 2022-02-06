@@ -15,7 +15,7 @@ def read_from_file(path, n_jobs=N_JOBS, chunksize=CHUNK_SIZE, *args, **kwargs):
             Parallel(n_jobs=n_jobs)(map(delayed(lambda x: x), Pandas.read_csv(path, chunksize=chunksize, *args, **kwargs))))
 
 def get_list_files(path):
-    return [join(path, file) for file in listdir(path) if not isdir(join(path, file))]
+    return [join(path, file) for file in listdir(path) if not isdir(join(path, file)) and file.lower().endswith('.csv')]
 
 # read csv file in parallel manner, in case a list of csv path is given, it reads them in parallel
 def read_csv_parallel(path, n_jobs=N_JOBS, chunksize=CHUNK_SIZE, *args, **kwargs):
